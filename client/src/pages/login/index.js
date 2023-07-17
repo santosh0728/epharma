@@ -14,9 +14,9 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
- const Login = () => (
+export const ValidationSchemaExample = () => (
   <div>
-    <h1>Log In</h1>
+    <h1>Signup</h1>
     <Formik
       initialValues={{
         firstName: '',
@@ -47,5 +47,3 @@ const SignupSchema = Yup.object().shape({
     </Formik>
   </div>
 );
-
-export default Login;
