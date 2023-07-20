@@ -4,10 +4,11 @@ export default function Footer() {
       padding: "40px 0",
       textAlign:"center",
       margin: 0
+      
     }
   return (
    <footer style={{backgroundColor:"#000"}}>
-    <p style={footStyle}>© 2023 Yatra Technologies Inc.</p>
+    <p style={footStyle}>© 2023 Epharma Pharmaceuticals.</p>
    </footer>
 
   )

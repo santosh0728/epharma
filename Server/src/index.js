@@ -4,14 +4,16 @@ require('dotenv').config()
 const connection=require('./db/connection')
 const Products=require('./models/products')
 const Users=require('./models/users')
-
+const cors=require('cors')
 connection()
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
-app.post('/register', (req, res) => {
-  Users.create(req.body)
+
+app.post('/signup', async(req, res) => {
+  await Users.create(req.body)
   res.json({
     msg: "you are successfully registered"
   })

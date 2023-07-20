@@ -4,16 +4,19 @@ import { Formik,Form,Field } from "formik";
 import * as Yup from 'yup';
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Link from "next/link";
+
+
 
 const Register = () => {
     const SignupSchema = Yup.object().shape({
-        firstName: Yup.string()
+        fullname: Yup.string()
           .min(2, 'Too Short!')
           .max(50, 'Too Long!')
           .required('Required'),
-        lastName: Yup.string()
+        phoneNumber: Yup.string()
           .min(2, 'Too Short!')
-          .max(50, 'Too Long!')
+          .max(10, 'Too Long!')
           .required('Required'),
         address: Yup.string()
         .min(5, 'Address Too Short!')
@@ -28,6 +31,18 @@ const Register = () => {
         .oneOf([Yup.ref('password'), null], 'Passwords must match'),
         email: Yup.string().email('Invalid email').required('Required'),
       });
+
+      const handleRegister=async(values)=>{
+        debugger;
+        const{confirmpassword,...formFields}=values
+          const requestOptions={
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(formFields)
+          };
+          await fetch('http://localhost:4000/signup',requestOptions)
+      }
+
     return(
         <>
         <Header/>
@@ -38,12 +53,16 @@ const Register = () => {
          initialValues={{
             fullname: '',
             email: '',
-            phone: ''
+            phoneNumber: '',
+            password:'',
+            confirmpassword:'',
+            address:''
          }}
          validationSchema={SignupSchema}
          onSubmit={values => {
-           // same shape as initial values
-           console.log(values);
+          handleRegister(values)
+          
+          
          }}
        >
          {({ errors, touched }) => (
@@ -59,13 +78,17 @@ const Register = () => {
              {errors.password && touched.password ? <div>{errors.password}</div> : null}
              <Field name="confirmpassword" type="password" placeholder="Confirm Password"/>
              {errors.confirmpassword && touched.confirmpassword ? <div>{errors.confirmpassword}</div> : null}
-             <Field name="phone" type="text" placeholder="Phone Number"/>
-             {errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
+             <Field name="phoneNumber" type="text" placeholder="Phone Number"/>
+             {errors.phoneNumber && touched.phoneNumber ? <div>{errors.phoneNumber}</div> : null}
+             <Field name="address" placeholder="Address"/>
+             {errors.address && touched.address ? (
+               <div>{errors.address}</div>
+             ) : null}
              <button type="submit">Signup</button>
            </Form>
          )}
        </Formik>
-        <p>Already have an account? <a href="/login">Log In</a></p>
+        <p>Already have an account? <Link href="/login">Log In</Link></p>
       </div>
       </div>
       <Footer/>
