@@ -33,7 +33,6 @@ const Register = () => {
       });
 
       const handleRegister=async(values)=>{
-        debugger;
         const{confirmpassword,...formFields}=values
           const requestOptions={
             method:'POST',
