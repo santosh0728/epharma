@@ -16,11 +16,11 @@ const Register = () => {
           .required('Required'),
         phoneNumber: Yup.string()
           .min(2, 'Too Short!')
-          .max(10, 'Too Long!')
+          .max(20, 'Too Long!')
           .required('Required'),
         address: Yup.string()
         .min(5, 'Address Too Short!')
-        .max(10, 'Address Too Long!')
+        .max(20, 'Address Too Long!')
         .required('Required'),
         password: Yup.string()
         .min(5, 'Password Too Short!')
