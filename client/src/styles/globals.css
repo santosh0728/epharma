@@ -5,6 +5,7 @@ body{
   .container{
     max-width: calc(1140px);
     margin: auto;
+    display: flex;
   }
   
   /* HEADER CSS STARTS */
@@ -19,15 +20,7 @@ body{
   nav{
     display: flex;
   }
-  .logo{
-    display: flex;
-      -webkit-box-flex: 1;
-      flex: 1 1 auto;
-  }
-  .logo img{
-    max-width: 250px;
-    height: 100px;
-  }
+  
   ul.nav-menus{
     display: flex;
       -webkit-box-flex: 0;
@@ -121,11 +114,37 @@ body{
 
   /* LOGIN PAGE CSS STARTS */
 .app--login{
-    max-width: 400px;
-    margin:0 auto;
+margin-top: 50px;
+margin-right: 50px;
+width: 45%;
+display: inline-block;
+height: 70vh;
+background-color: whitesmoke;
+border-radius: 12px;
+padding-left: 2%;
+padding-right: 2%;
+border: #d01111;
+border-width: 2px;
+
   }
   .app--login input + div{
     color:red;
   }
 
+  .app--logo{
+    margin-top: 50px;
+    width: 40%;
+    display: inline-block;
+    background-color: black;
+    height: 65vh;
+    color: white;
+    padding-left: 50px;
+    padding-top: 30px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+  }
+
+  .app--logo image{
+    padding: 5px;
+  }
  

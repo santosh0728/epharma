@@ -1,5 +1,4 @@
-// import Image from 'next/image'
-// import Logo from '../../public/yatra-logo.png'
+
 export default function Header() {
   return (
    <header>
@@ -10,7 +9,7 @@ export default function Header() {
         </div> */}
         <ul className="nav-menus">
             <li><a href="/login">Login</a></li>
-            <li><a className="active" href="/signup">Signup</a></li>
+            <li><a href="/signup">Signup</a></li>
         </ul>
        </nav>
     </div>

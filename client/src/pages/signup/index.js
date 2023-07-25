@@ -2,6 +2,8 @@
 import React from "react";
 import { Formik,Form,Field } from "formik";
 import * as Yup from 'yup';
+import { useRouter } from 'next/navigation'
+import { message } from 'antd';
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Link from "next/link";
@@ -9,6 +11,8 @@ import Link from "next/link";
 
 
 const Register = () => {
+  const router = useRouter()
+  const [msg, contextHolder] = message.useMessage();  
     const SignupSchema = Yup.object().shape({
         fullname: Yup.string()
           .min(2, 'Too Short!')
@@ -39,11 +43,21 @@ const Register = () => {
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify(formFields)
           };
-          await fetch('http://localhost:4000/signup',requestOptions)
+         const res= await fetch('http://localhost:4000/signup',requestOptions)
+         const data=await res.json()
+         if(data && res.status==200) {  
+          router.push('/login')
+          setTimeout(() => {
+                msg.info(data.msg);
+          }, 2000);
+        }else{
+          msg.info(JSON.stringify(res.statusText +": The entered number has already been registered"));
+        }
       }
 
     return(
         <>
+        {contextHolder}
         <Header/>
       <div className='container'> 
       <div className="app--login">
@@ -73,10 +87,13 @@ const Register = () => {
              
              <Field name="email" type="email" placeholder="Email"/>
              {errors.email && touched.email ? <div>{errors.email}</div> : null}
+
              <Field name="password" type="password" placeholder="Password"/>
              {errors.password && touched.password ? <div>{errors.password}</div> : null}
+
              <Field name="confirmpassword" type="password" placeholder="Confirm Password"/>
              {errors.confirmpassword && touched.confirmpassword ? <div>{errors.confirmpassword}</div> : null}
+
              <Field name="phoneNumber" type="text" placeholder="Phone Number"/>
              {errors.phoneNumber && touched.phoneNumber ? <div>{errors.phoneNumber}</div> : null}
              <Field name="address" placeholder="Address"/>
@@ -88,6 +105,9 @@ const Register = () => {
          )}
        </Formik>
         <p>Already have an account? <Link href="/login">Log In</Link></p>
+      </div>
+      <div className="app--logo">
+              <h2>Hello there</h2>
       </div>
       </div>
       <Footer/>

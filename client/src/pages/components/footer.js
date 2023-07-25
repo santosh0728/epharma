@@ -1,6 +1,6 @@
 export default function Footer() {
     const footStyle={
-        color: "white",
+      color: "white",
       padding: "40px 0",
       textAlign:"center",
       margin: 0
