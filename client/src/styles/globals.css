@@ -1,3 +1,5 @@
+
+
 body{
     margin:0;
     font-family: 'Open Sans', sans-serif;
@@ -10,7 +12,7 @@ body{
   
   /* HEADER CSS STARTS */
   header{
-    background-color: #000;
+    background-color: #446254;
     padding: 10px 0;
     color:#fff;
     /* position: fixed; */
@@ -53,7 +55,9 @@ body{
     background-color: rgb(255, 255, 255);
   }
   /* HEADER CSS ENDS */
-
+/* Footer CSS Start */
+  
+  /* FOOTER CSS END */
   /* BANNER CSS STARTS */
 .hero{
     background-size: cover;
@@ -97,7 +101,7 @@ body{
   }
   .request--box a,
   button[type="submit"]{
-    background-color: #000;
+    background-color: #446254;
     padding: 14px 25px;
     color:#fff;
     border-radius: 8px;
@@ -109,7 +113,7 @@ body{
   }
   .request--box a:hover,
   button[type="submit"]:hover{
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
   /* LOGIN PAGE CSS STARTS */
@@ -119,12 +123,11 @@ margin-right: 50px;
 width: 45%;
 display: inline-block;
 height: 70vh;
-background-color: whitesmoke;
+background-color: #A0D6B8;
 border-radius: 12px;
 padding-left: 2%;
 padding-right: 2%;
-border: #d01111;
-border-width: 2px;
+border: 2px solid red;
 
   }
   .app--login input + div{
@@ -135,8 +138,8 @@ border-width: 2px;
     margin-top: 50px;
     width: 40%;
     display: inline-block;
-    background-color: black;
-    height: 65vh;
+    background-color: #bbde8c;
+    height:calc(65vh) ;
     color: white;
     padding-left: 50px;
     padding-top: 30px;
@@ -148,3 +151,34 @@ border-width: 2px;
     padding: 5px;
   }
  
+  .app--signup{
+    margin-top: 10px;
+    margin-right: 50px;
+    width: 45%;
+    display: inline-block;
+    height: 70vh;
+    background-color: #A0D6B8;
+    border-radius: 12px;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+   
+    
+      }
+     
+      .app--logo1{
+        margin-top: 10px;
+        width: 40%;
+        display: inline-block;
+        background-color: #bbde8c;
+        height: 69vh;
+        padding-left: 50px;
+        padding-top: 30px;
+        border-radius: 12px;
+        margin-bottom: 50px;
+        
+      }
+    
+      .app--logo1 image{
+        padding: 5px;
+      }

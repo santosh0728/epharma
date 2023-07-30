@@ -1,15 +1,18 @@
 export default function Footer() {
     const footStyle={
       color: "white",
-      padding: "40px 0",
+      padding: "30px 0",
       textAlign:"center",
-      margin: 0
+      margin: 0,
+      
       
     }
   return (
-   <footer style={{backgroundColor:"#000"}}>
+   <footer style={{
+    backgroundColor:"#446254"
+    
+    }}>
     <p style={footStyle}>© 2023 Epharma Pharmaceuticals.</p>
    </footer>
-
   )
 }

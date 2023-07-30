@@ -1,11 +1,13 @@
 const Users=require('../models/users')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+
 
 
 const registerUser=  async(req, res) => {
     try{
-        //check if user already exists
+        //Step 1: Check if user already exists
         const data= await Users.findOne({phoneNumber:req.body.phoneNumber })
         if(data){
             res.status(409).json({
@@ -14,14 +16,21 @@ const registerUser=  async(req, res) => {
                 
             })
         }else{
-                //create a hash password of req.body.password
+                //Step 2: Create a hash password of req.body.password
                 req.body.password = await bcrypt.hash(req.body.password, saltRounds)
-                await Users.create(req.body)
+                //Step 3: Generating Tokens jwt token generator
+                const token = jwt.sign({ phoneNumber:req.body.phoneNumber }, process.env.SECRET_KEY);
+                const data=await Users.create(req.body)
+                if (data){
+                    const {password,...otherFields}=data._doc
                 res.json({
                     msg: "you are successfully registered",
-                    success: true
+                    success: true,
+                    token,
+                    userDetails:otherFields
                 })
         }
+    }
       
     }catch(err){
         console.log(err)

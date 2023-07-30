@@ -3,10 +3,12 @@ import React from "react";
 import { Formik,Form,Field } from "formik";
 import * as Yup from 'yup';
 import { useRouter } from 'next/navigation'
-import { message } from 'antd';
+import { message} from 'antd';
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../../public/Logo.png"
 
 
 
@@ -60,7 +62,7 @@ const Register = () => {
         {contextHolder}
         <Header/>
       <div className='container'> 
-      <div className="app--login">
+      <div className="app--signup">
         <h2>Sign up</h2>
         <Formik
          initialValues={{
@@ -106,8 +108,13 @@ const Register = () => {
        </Formik>
         <p>Already have an account? <Link href="/login">Log In</Link></p>
       </div>
-      <div className="app--logo">
-              <h2>Hello there</h2>
+      <div className="app--logo1">
+      <Image
+        src={Logo}
+        width={400}
+        height={400}
+        alt="logo"
+        ></Image>
       </div>
       </div>
       <Footer/>

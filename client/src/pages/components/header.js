@@ -1,3 +1,5 @@
+import { Avatar, Space } from 'antd';
+
 
 export default function Header() {
   return (
@@ -11,6 +13,18 @@ export default function Header() {
             <li><a href="/login">Login</a></li>
             <li><a href="/signup">Signup</a></li>
         </ul>
+        <Avatar
+                size="large"
+      style={{
+        backgroundColor: '#fde3cf',
+        color: '#f56a00',
+        marginTop:'15px',
+        fontSize: '1.5rem',
+        marginRight: '10px'
+      }}
+    >
+      U
+    </Avatar>
        </nav>
     </div>
         
