@@ -9,11 +9,14 @@ import Footer from "../components/footer";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../public/Logo.png"
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "@/redux/reducerSlice/users";
 
 
 
 const Register = () => {
   const router = useRouter()
+  const dispatch=useDispatch()
   const [msg, contextHolder] = message.useMessage();  
     const SignupSchema = Yup.object().shape({
         fullname: Yup.string()
@@ -47,8 +50,10 @@ const Register = () => {
           };
          const res= await fetch('http://localhost:4000/signup',requestOptions)
          const data=await res.json()
-         if(data && res.status==200) {  
-          router.push('/login')
+         if(data && res.status==200) { 
+          debugger; 
+          dispatch(setUserDetails(data))
+          router.push('/home')
           setTimeout(() => {
                 msg.info(data.msg);
           }, 2000);
