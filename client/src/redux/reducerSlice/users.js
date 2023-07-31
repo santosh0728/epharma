@@ -15,7 +15,6 @@ const usersSlice = createSlice({
         const {token, userDetails} = actions.payload
             return{
                 ...state,
-                
                 token,
                 userDetails
             }

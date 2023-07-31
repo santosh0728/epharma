@@ -102,7 +102,7 @@ const Register = () => {
              {errors.address && touched.address ? (
                <div>{errors.address}</div>
              ) : null}
-             <button type="submit">Signup</button>
+             <button type="submit">Signup</button>   
            </Form>
          )}
        </Formik>
