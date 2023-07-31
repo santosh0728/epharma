@@ -6,53 +6,56 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import Image from 'next/image';
 import Logo from "../../../public/Logo.png"
+
 const Login = () => {
-    const LoginSchema = Yup.object().shape({
-      email: Yup.string().email('Invalid email').required('Required'),
-      password: Yup.string().required('Required')
-    });
-    return(
-        <>
-        <Header/>
-      <div className='container'> 
-      <div className="app--login">
-        <h2>Please Login</h2>
-        <Formik
-         initialValues={{
-            phoneNumber: '',
-           password:''
-         }}
-         validationSchema={LoginSchema}
-         onSubmit={values => {
-           // same shape as initial values
-           console.log(values);
-         }}
-       >
-         {({ errors, touched }) => (
-           <Form>
-            <Field name="phoneNumber"  placeholder="Phone Number"/>
-             {errors.phoneNumber && touched.phoneNumber ? <div>{errors.phoneNumber}</div> : null}
-             <Field name="password" type="password" placeholder="Password"/>
-             {errors.password && touched.password ? <div>{errors.password}</div> : null}
-             <button type="submit">Login</button>
-           </Form>
-         )}
-       </Formik>
-        <p>Don't have an account? <Link href="/signup">Sign up</Link></p>
+  
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().required('Required')
+  });
+  return (
+    <>
+      <Header />
+      <div className='container'>
+        <div className="app--login">
+          <h2>Please Login </h2>
+          <Formik
+            initialValues={{
+              phoneNumber: '',
+              password: ''
+            }}
+            validationSchema={LoginSchema}
+            onSubmit={values => {
+              // same shape as initial values
+              console.log(values);
+            }}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <Field name="phoneNumber" placeholder="Phone Number" />
+                {errors.phoneNumber && touched.phoneNumber ? <div>{errors.phoneNumber}</div> : null}
+                <Field name="password" type="password" placeholder="Password" />
+                {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                <button type="submit">
+                  Login
+                </button>
+              </Form>
+            )}
+          </Formik>
+          <p>Don't have an account? <Link href="/signup">Sign up</Link></p>
+        </div>
+        <div className='app--logo'>
+          <Image
+            src={Logo}
+            width={400}
+            height={400}
+            alt="logo"
+          ></Image>
+        </div>
       </div>
-      <div className='app--logo'>
-        <Image
-        src={Logo}
-        width={400}
-        height={400}
-        
-        alt="logo"
-        ></Image>
-      </div>
-      </div>
-      <Footer/>
-      </>
-    )
-  }
+      <Footer />
+    </>
+  )
+}
 
 export default Login;

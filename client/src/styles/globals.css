@@ -1,184 +1,189 @@
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
 
+.container {
+  max-width: calc(1140px);
+  margin: auto;
+  display: flex;
+}
 
-body{
-    margin:0;
-    font-family: 'Open Sans', sans-serif;
-  }
-  .container{
-    max-width: calc(1140px);
-    margin: auto;
-    display: flex;
-  }
-  
-  /* HEADER CSS STARTS */
-  header{
-    background-color: #446254;
-    padding: 10px 0;
-    color:#fff;
-    /* position: fixed; */
-    top: 0;
-    width: 100%
-  }
-  nav{
-    display: flex;
-  }
-  
-  ul.nav-menus{
-    display: flex;
-      -webkit-box-flex: 0;
-      flex: 0 0 auto;
-      padding-left: 24px;
-      padding-right: 24px;
-      justify-self: flex-end;
-      -webkit-box-pack: end;
-      list-style: none;
-      font-size: 1.2rem;
-      
-  }
-  ul.nav-menus li{
-    align-self: center;
-    padding: 0 10px;
-    margin-bottom: 0;
-  }
-  ul.nav-menus li a{
-    color:#fff;
-    text-decoration: none;
-    font-weight: 500;
-    line-height: 16px;
-    border-radius: 30px;
-    padding: 10px 12px;
-    white-space: nowrap;
-  }
-  ul.nav-menus li a.active,
-  ul.nav-menus li a:hover{
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-  }
-  /* HEADER CSS ENDS */
+/* HEADER CSS STARTS */
+header {
+  background-color: #446254;
+  padding: 10px 0;
+  color: #fff;
+  /* position: fixed; */
+  top: 0;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+}
+
+ul.nav-menus {
+  display: flex;
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-self: flex-end;
+  -webkit-box-pack: end;
+  list-style: none;
+  font-size: 1.2rem;
+}
+
+ul.nav-menus li {
+  align-self: center;
+  padding: 0 10px;
+  margin-bottom: 0;
+}
+
+ul.nav-menus li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 16px;
+  border-radius: 30px;
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+
+ul.nav-menus li a.active,
+ul.nav-menus li a:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+
+/* HEADER CSS ENDS */
 /* Footer CSS Start */
-  
-  /* FOOTER CSS END */
-  /* BANNER CSS STARTS */
-.hero{
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-  }
-  .request--box{
-    background-color: #fff;
-      padding: 20px 40px;
-      color: #000;
-      position: absolute;
-      top: 30%;
-      bottom: auto;
-      left: 12%;
-  }
-  .request--box h2{
-    font-size: 3rem;
-    font-weight: 500;
-  }
-  .request--box .btn{
-    margin-bottom: 20px;
-    display: flex;
-  }
-  
-  form input{
-    display: block;
-    margin:15px 0;
-      padding:15px 10px;
-      width:100%;
-      outline:none;
-      border:1px solid #bbb;
-      border-radius:20px;
-      -webkit-box-sizing:border-box;
-         -moz-box-sizing:border-box;
-              box-sizing:border-box;
-      -webkit-transition:0.2s ease all;
-         -moz-transition:0.2s ease all;
-          -ms-transition:0.2s ease all;
-           -o-transition:0.2s ease all;
-              transition:0.2s ease all;
-  }
-  .request--box a,
-  button[type="submit"]{
-    background-color: #446254;
-    padding: 14px 25px;
-    color:#fff;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-    text-decoration: none;
-    margin-top: 20px;
-    cursor: pointer;
-  }
-  .request--box a:hover,
-  button[type="submit"]:hover{
-    opacity: 0.8;
-  }
 
-  /* LOGIN PAGE CSS STARTS */
-.app--login{
-margin-top: 50px;
-margin-right: 50px;
-width: 45%;
-display: inline-block;
-height: 70vh;
-background-color: #A0D6B8;
-border-radius: 12px;
-padding-left: 2%;
-padding-right: 2%;
-border: 2px solid red;
+/* FOOTER CSS END */
+/* BANNER CSS STARTS */
+.hero {
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
 
-  }
-  .app--login input + div{
-    color:red;
-  }
+.request--box {
+  background-color: #fff;
+  padding: 20px 40px;
+  color: #000;
+  position: absolute;
+  top: 30%;
+  bottom: auto;
+  left: 12%;
+}
 
-  .app--logo{
-    margin-top: 50px;
-    width: 40%;
-    display: inline-block;
-    background-color: #bbde8c;
-    height:calc(65vh) ;
-    color: white;
-    padding-left: 50px;
-    padding-top: 30px;
-    border-radius: 12px;
-    margin-bottom: 50px;
-  }
+.request--box h2 {
+  font-size: 3rem;
+  font-weight: 500;
+}
 
-  .app--logo image{
-    padding: 5px;
-  }
- 
-  .app--signup{
-    margin-top: 10px;
-    margin-right: 50px;
-    width: 45%;
-    display: inline-block;
-    height: 70vh;
-    background-color: #A0D6B8;
-    border-radius: 12px;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-bottom: 2%;
-   
-    
-      }
-     
-      .app--logo1{
-        margin-top: 10px;
-        width: 40%;
-        display: inline-block;
-        background-color: #bbde8c;
-        height: 69vh;
-        padding-left: 50px;
-        padding-top: 30px;
-        border-radius: 12px;
-        margin-bottom: 50px;
-        
-      }
-    
-      .app--logo1 image{
-        padding: 5px;
-      }
+.request--box .btn {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+form input {
+  display: block;
+  margin: 15px 0;
+  padding: 15px 10px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -ms-transition: 0.2s ease all;
+  -o-transition: 0.2s ease all;
+  transition: 0.2s ease all;
+}
+
+.request--box a,
+button[type="submit"] {
+  background-color: #446254;
+  padding: 14px 25px;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  text-decoration: none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.request--box a:hover,
+button[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+/* LOGIN PAGE CSS STARTS */
+.app--login {
+  margin-top: 50px;
+  margin-right: 50px;
+  width: 45%;
+  display: inline-block;
+  height: 70vh;
+  background-color: #a0d6b8;
+  border-radius: 12px;
+  padding-left: 2%;
+  padding-right: 2%;
+  border: 2px solid red;
+}
+
+.app--login input+div {
+  color: red;
+}
+
+.app--logo {
+  margin-top: 50px;
+  width: 40%;
+  display: inline-block;
+  background-color: #bbde8c;
+  height: calc(65vh);
+  color: white;
+  padding-left: 50px;
+  padding-top: 30px;
+  border-radius: 12px;
+  margin-bottom: 50px;
+}
+
+.app--logo image {
+  padding: 5px;
+}
+
+.app--signup {
+  margin-top: 10px;
+  margin-right: 50px;
+  width: 45%;
+  display: inline-block;
+  height: 70vh;
+  background-color: #a0d6b8;
+  border-radius: 12px;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+}
+
+.app--logo1 {
+  margin-top: 10px;
+  width: 40%;
+  display: inline-block;
+  background-color: #bbde8c;
+  height: 69vh;
+  padding-left: 50px;
+  padding-top: 30px;
+  border-radius: 12px;
+  margin-bottom: 50px;
+}
+
+.app--logo1 image {
+  padding: 5px;
+}
