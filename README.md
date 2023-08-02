@@ -1,9 +1,9 @@
 ## First Phase
 - [ ] Login
-    - [ ] Rider
+    - [ ] Admin
     - [ ] User
 - [ ] Register
-   - [ ] Rider
+   - [ ] Admin
    - [ ] User
 
 
