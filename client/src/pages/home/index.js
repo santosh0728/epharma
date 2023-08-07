@@ -10,9 +10,10 @@ function index() {
   
       Hello this is home
     </div>
-    <Footer />
+    
     </>
   )
 }
 
 export default index
+

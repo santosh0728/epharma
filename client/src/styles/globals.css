@@ -1,3 +1,8 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
@@ -170,6 +175,7 @@ button[type="submit"]:hover {
   padding-left: 2%;
   padding-right: 2%;
   padding-bottom: 2%;
+  overflow:scroll ;
 }
 
 .app--logo1 {
@@ -186,4 +192,12 @@ button[type="submit"]:hover {
 
 .app--logo1 image {
   padding: 5px;
+}
+
+.card{
+  background-color: aqua;
+  margin: 10px;
+  height: 200px;
+  width: 200px;
+  display: inline-flex;
 }

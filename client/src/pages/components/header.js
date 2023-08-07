@@ -10,7 +10,7 @@ export default function Header() {
     router.push('/profile')
   }
   const {isLoggedIn, userDetails} = useSelector(state=>state.users)
-  console.log(isLoggedIn)
+ 
   const content = (
     <div>
   

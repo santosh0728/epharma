@@ -51,7 +51,7 @@ const Register = () => {
     const res = await fetch('http://localhost:5000/signup', requestOptions)
     const data = await res.json()
     if (data && res.status == 200) {
-      debugger;
+      
       dispatch(setUserDetails(data))
       router.push('/home')
       setTimeout(() => {
@@ -65,7 +65,7 @@ const Register = () => {
   return (
     <>
       {contextHolder}
-      <Header />
+      {/* <Header /> */}
       <div className='container'>
         <div className="app--signup">
           <h2>Sign up</h2>
@@ -89,7 +89,7 @@ const Register = () => {
               <Form>
                 <Field name="fullname" placeholder="Full Name" />
                 {errors.fullname && touched.fullname ? (
-                  <div>{errors.fullname}</div>
+                  <div className="text-sm inline text-red-500">{errors.fullname}</div>
                 ) : null}
 
                 <Field name="email" type="email" placeholder="Email" />
@@ -122,7 +122,7 @@ const Register = () => {
           ></Image>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
