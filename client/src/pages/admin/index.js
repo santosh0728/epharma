@@ -16,12 +16,19 @@ import { Layout, Menu, Button, theme } from 'antd';
 const { Header, Sider, Content } = Layout;
 
 const Admin = () => {
+    const [file, setFile] = useState(null)
     const handleAddProducts = (values) => {
+        const data = new FormData()
+
+        Object.entries(values).forEach((item)=>{
+            data.append(item[0], item[1])
+            })
+            data.append('product',file)
+
         fetch('http://localhost:5000/products',
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(values)
+                body: data
             })
     }
     
@@ -112,6 +119,7 @@ const Admin = () => {
                                     {errors.productPrice && touched.productPrice ? <div>{errors.productPrice}</div> : null}<br />
                                     <Field type="textarea" placeholder="Product Description" name="productDescription" />
                                     {errors.productDescription && touched.productDescription ? <div>{errors.productDescription}</div> : null}<br />
+                                    <input type="file" onChange={(e)=> setFile(e.target.files[0])}/>
                                     <button type="submit">Submit</button>
                                 </div>
                             </Form>
