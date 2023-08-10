@@ -8,7 +8,7 @@ const productRoute=require('./routes/products')
 connection()
 const app = express()
 app.use(cors())
-const port = process.env.PORT
+const port = process.env.PORT || 5000
 app.use(express.json())
 app.use("/", userRoute)
 app.use("/",productRoute)
@@ -17,5 +17,5 @@ app.use("/",productRoute)
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${process.env.port}`)
+  console.log(`Example app listening on port ${port}`)
 })

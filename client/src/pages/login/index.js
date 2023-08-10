@@ -6,7 +6,6 @@ import { message } from 'antd';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Image from 'next/image';
-import Logo from "../../../public/Logo.png"
 import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from '@/redux/reducerSlice/users';
@@ -73,14 +72,6 @@ const Login = () => {
             )}
           </Formik>
           <p>Don't have an account? <Link href="/signup">Sign up</Link></p>
-        </div>
-        <div className='app--logo'>
-          <Image
-            src={Logo}
-            width={400}
-            height={400}
-            alt="logo"
-          ></Image>
         </div>
       </div>
       <Footer />
