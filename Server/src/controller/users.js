@@ -66,5 +66,39 @@ const loginUser=  async(req, res) => {
     }
   
 }
+//Password change controller
+const changePassword =  async(req, res) => {
+    try{
+         // dbData= Users.findById(req.params.id)
+        const dbData=await Users.findById(req.params.id)
 
-module.exports = {registerUser,loginUser}
+        if(dbData){
+            //1. req.body.currentPassword and dbData.password
+            //bcrypt.compare(req.body.password, data.password)
+            const isMatched= await bcrypt.compare(req.body.currentPassword, dbData.password)
+            if(isMatched){
+                 //if true, update database=> 
+                 //findByIdandUpdate(req.params.id, {password: req.body.newPassword})
+                req.body.newPassword = await bcrypt.hash(req.body.newPassword, saltRounds)
+                await Users.findByIdAndUpdate(req.params.id,{password: req.body.newPassword})
+                res.json({
+                    msg:"Password Changed Successfully",
+                    changePass:true
+                })
+            }else{
+                res.json({
+                    changePasssuccess: false,
+                    msg: "Current Password doesn't matched"
+                })
+            }
+        }
+    }catch(err){
+        console.log(err)
+    }
+   
+      
+      
+     
+} 
+
+module.exports = {registerUser,loginUser,changePassword}

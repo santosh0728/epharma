@@ -23,7 +23,7 @@ function index() {
           <div>
             {products.map((item)=>{
               return <div className='card'>
-                {item.productImage}
+               
               <Image src={'http://localhost:5000/product-img/'+ item._id} alt="F" width={50} height={60}/>  
               Name:{item.productName}<br/>
               Price:{item.productPrice}<br/>

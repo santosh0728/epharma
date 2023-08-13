@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "@/redux/reducerSlice/users";
+import Logo from "../../../public/Logo.png"
 
 
 
@@ -64,7 +65,7 @@ const Register = () => {
   return (
     <>
       {contextHolder}
-      {/* <Header /> */}
+      <Header />
       <div className='container'>
         <div className="app--signup">
           <h2>Sign up</h2>
@@ -112,16 +113,16 @@ const Register = () => {
           </Formik>
           <p>Already have an account? <Link href="/login">Log In</Link></p>
         </div>
-        {/* <div className="app--logo1">
+        <div className="app--logo1">
           <Image
             src={Logo}
             width={400}
             height={400}
             alt="logo"
           ></Image>
-        </div> */}
+        </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
