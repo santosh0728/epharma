@@ -1,6 +1,6 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 
 body {
@@ -194,10 +194,91 @@ button[type="submit"]:hover {
   padding: 5px;
 }
 
+
+.product{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
 .card{
-  background-color: aqua;
-  margin: 10px;
-  height: 200px;
+  width: 20%;
+  
+  margin: 15px;
+  margin-left: 20px;
+  margin-right: 50px;
+  box-sizing: border-box;
+  float: left;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  padding-top: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+  0 10px 10px rgba(0,0,0,0,0.22);
+  transition: .4s;
+  background: #f2f2f2;
+}
+.card:hover{
+  box-shadow: 0 3px 6px rgba(0,0,0,0,0.16),
+  0 3px 6px rgba(0,0,0,0,0.23);
+  transform: translate(0px,-8px);
+
+}
+.card img{
+  /* border: solid black;
+  border-radius: 10px; */
   width: 200px;
-  display: inline-flex;
+  height: 200px;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+
+}
+.card p{
+  text-align: center;
+  color: #b2bec3;
+  padding-top: 0 8px;
+
+
+}
+.card h1{
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  color: #222f3e;
+  margin: 0 ;
+}
+.card h2{
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: #222f3e;
+  margin: 0 ;
+}
+.card button{
+  text-align: center;
+  font-size: 24px;
+  color: #ffff;
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  margin-top: 5px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  background: #446254;
+
+}
+@media(max-width:1000px){
+  .card{
+    width: 45%;
+  }
+}
+@media(max-width:750px){
+  .card{
+    width: 100%;
+  }
 }

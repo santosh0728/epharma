@@ -91,7 +91,6 @@ const EditProfileForm = ({ handleEditProfile }) => {
             {errors.fullname && touched.fullname ? (
               <div className="text-sm inline text-red-500">{errors.fullname}</div>
             ) : null}
-
             <Field name="email" type="email"  />
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
             <Field name="phoneNumber" type="text" />

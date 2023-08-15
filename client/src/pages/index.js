@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react'
 import Header from './components/header'
 import Image from 'next/image'
 
+
+
+
 function index() {
   const [products,setProducts]= useState([])
   const fetchProducts= async()=> {
@@ -17,19 +20,28 @@ function index() {
   return (
   <>
   <Header/>
-    <div>
+    <div className='products'>
       {
         products.length>0 ? (
           <div>
             {products.map((item)=>{
-              return <div className='card'>
+              return (
+                <>
+                
+              <div className='card'>
                
-              <Image src={'http://localhost:5000/product-img/'+ item._id} alt="F" width={50} height={60}/>  
-              Name:{item.productName}<br/>
-              Price:{item.productPrice}<br/>
+              <Image class="w-full h-full object-cover"
+               src={'http://localhost:5000/product-img/'+ item._id} 
+               alt="F" width={200} height={200}/>  
+             <h1>{item.productName}</h1> 
+              <p>Description:{item.productDescription}</p> 
+              <h2>Price:Rs.{item.productPrice}</h2>
               Category:{item.category}<br/>
-              Description:{item.productDescription}
+             
+              <button>Buy Now</button>
               </div>
+              </>
+              )
             })}
             </div>
         ): "loading"
