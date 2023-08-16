@@ -1,11 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import Header from './components/header'
 import Image from 'next/image'
+import { ShoppingCartOutlined,HeartOutlined } from '@ant-design/icons'
+import { addToCart } from '@/redux/reducerSlice/products'
+import { useDispatch,useSelector } from 'react-redux'
 
-
+import { Badge } from 'antd';
 
 
 function index() {
+  const {cartList}=useSelector(state=>state.products)
+  const dispatch=useDispatch()
   const [products,setProducts]= useState([])
   const fetchProducts= async()=> {
    const res= await fetch('http://localhost:5000/products')
@@ -20,10 +25,16 @@ function index() {
   return (
   <>
   <Header/>
+  
     <div className='products'>
+    <Badge count={cartList.length}>
+      <ShoppingCartOutlined style={{fontSize:'30px'}}/>
+    </Badge>
+   
       {
         products.length>0 ? (
           <div>
+            {/* {JSON.stringify(cartList)} */}
             {products.map((item)=>{
               return (
                 <>
@@ -32,13 +43,18 @@ function index() {
                
               <Image class="w-full h-full object-cover"
                src={'http://localhost:5000/product-img/'+ item._id} 
-               alt="F" width={200} height={200}/>  
+               alt="F" width={200} height={200}
+                />  
+               
              <h1>{item.productName}</h1> 
-              <p>Description:{item.productDescription}</p> 
-              <h2>Price:Rs.{item.productPrice}</h2>
-              Category:{item.category}<br/>
-             
+              <p>{item.productDescription}</p> 
+              <h2>Rs.{item.productPrice}</h2>
+              <h3><HeartOutlined />  Wishlist</h3>
+             {/* <p>Category:{item.category}<br/></p>  */}
+              
+              <button onClick={()=>dispatch(addToCart(item._id))}><ShoppingCartOutlined/> Add to Cart</button>
               <button>Buy Now</button>
+              
               </div>
               </>
               )

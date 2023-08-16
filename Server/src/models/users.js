@@ -5,11 +5,12 @@ const mongoose=require('mongoose')
 
 
 const userSchema = new mongoose.Schema({
-    fullname: String, // String is shorthand for {type: String}
+    fullname: {type:String,required:true},
+    phoneNumber: {type:String,required:true}, // String is shorthand for {type: String}
     email: String,
     password: String,
-    phoneNumber: String,
-    address:String
+    address:String,
+    wishList:Array
   });
   
   const Users = mongoose.model('Users', userSchema);
