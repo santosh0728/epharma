@@ -36,6 +36,24 @@ const Admin = () => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+    const adminProductSchema = Yup.object().shape({
+        productName: Yup.string()
+          .min(2, 'Too Short!')
+          .max(20, 'Too Long!')
+          .required('Required'),
+        category: Yup.string()
+          .oneOf(["OTC Medicine","Women Choice","Sexual Wellness","Baby Care","Dental care","Prescription Medicine"])
+          .required('Required'),
+        productPrice: Yup.string()
+          .min(2, 'Too Short!')
+          .max(20, 'Too Long!')
+          .required('Required'),
+        productDescription: Yup.string()
+          .min(2, 'Too Short!')
+          .max(20, 'Too Long!')
+          .required('Required'),
+        
+      });
 
     return (
         <Layout>
@@ -100,6 +118,7 @@ const Admin = () => {
                             productPrice: '',
                             productDescription: ''
                         }}
+                        validationSchema={adminProductSchema}
                         onSubmit={values => {
                             handleAddProducts(values)
                         }}
@@ -111,7 +130,15 @@ const Admin = () => {
                                     {errors.productName && touched.productName ? (
                                         <div>{errors.productName}</div>
                                     ) : null}<br />
-                                    <Field placeholder="Product Category" name="category" />
+                                    <Field component="select" placeholder="Product Category" name="category" >
+                                        <option value="">Please Select the category</option>
+                                        <option value="OTC Medicine">OTC Medicine</option>
+                                        <option value="Women Choice">Women Choice</option>
+                                        <option value="Sexual Wellness">Sexual Wellness</option>
+                                        <option value="Baby Care">Baby Care</option>
+                                        <option value="Dental care">Dental care</option>
+                                        <option value="Prescription Medicine">Prescription Medicine</option>
+                                    </Field>
                                     {errors.category && touched.category ? (
                                         <div>{errors.category}</div>
                                     ) : null}<br />
@@ -120,6 +147,7 @@ const Admin = () => {
                                     <Field type="textarea" placeholder="Product Description" name="productDescription" />
                                     {errors.productDescription && touched.productDescription ? <div>{errors.productDescription}</div> : null}<br />
                                     <input type="file" onChange={(e)=> setFile(e.target.files[0])}/>
+                                  
                                     <button type="submit">Submit</button>
                                 </div>
                             </Form>

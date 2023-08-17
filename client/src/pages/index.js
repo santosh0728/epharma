@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { ShoppingCartOutlined,HeartOutlined } from '@ant-design/icons'
 import { addToCart } from '@/redux/reducerSlice/products'
 import { useDispatch,useSelector } from 'react-redux'
-
 import { Badge } from 'antd';
 
 
@@ -25,6 +24,7 @@ function index() {
   return (
   <>
   <Header/>
+
   
     <div className='products'>
     <Badge count={cartList.length}>
@@ -50,7 +50,7 @@ function index() {
               <p>{item.productDescription}</p> 
               <h2>Rs.{item.productPrice}</h2>
               <h3><HeartOutlined />  Wishlist</h3>
-             {/* <p>Category:{item.category}<br/></p>  */}
+             <p>Category:{item.category}<br/></p> 
               
               <button onClick={()=>dispatch(addToCart(item._id))}><ShoppingCartOutlined/> Add to Cart</button>
               <button>Buy Now</button>

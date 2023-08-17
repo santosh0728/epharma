@@ -26,7 +26,7 @@ const Login = () => {
     if (data && res.status == 200&& data.success) {
 
       dispatch(setUserDetails(data))
-      router.push('/home')
+      router.push('/')
       setTimeout(() => {
         msg.info(data.msg);
       }, 2000);
