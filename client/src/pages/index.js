@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react'
 import Header from './components/header'
 import Image from 'next/image'
 import { ShoppingCartOutlined,HeartOutlined } from '@ant-design/icons'
-import { addToCart } from '@/redux/reducerSlice/products'
-import { useDispatch,useSelector } from 'react-redux'
-import { Badge } from 'antd';
+import { addToCart, addToWishList } from '@/redux/reducerSlice/products'
+import { useDispatch } from 'react-redux'
+
 
 
 function index() {
-  const {cartList}=useSelector(state=>state.products)
+  
   const dispatch=useDispatch()
   const [products,setProducts]= useState([])
   const fetchProducts= async()=> {
@@ -27,9 +27,9 @@ function index() {
 
   
     <div className='products'>
-    <Badge count={cartList.length}>
+    {/* <Badge count={cartList.length}>
       <ShoppingCartOutlined style={{fontSize:'30px'}}/>
-    </Badge>
+    </Badge> */}
    
       {
         products.length>0 ? (
@@ -49,7 +49,7 @@ function index() {
              <h1>{item.productName}</h1> 
               <p>{item.productDescription}</p> 
               <h2>Rs.{item.productPrice}</h2>
-              <h3><HeartOutlined />  Wishlist</h3>
+              <HeartOutlined onClick={()=>dispatch(addToWishList(item._id))}/>
              <p>Category:{item.category}<br/></p> 
               
               <button onClick={()=>dispatch(addToCart(item._id))}><ShoppingCartOutlined/> Add to Cart</button>
