@@ -45,6 +45,7 @@ function index() {
                src={'http://localhost:5000/product-img/'+ item._id} 
                alt="F" width={200} height={200}
                 />  
+                
                
              <h1>{item.productName}</h1> 
               <p>{item.productDescription}</p> 

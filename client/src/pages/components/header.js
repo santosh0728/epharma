@@ -6,16 +6,37 @@ import Logo from "../../../public/Logo.png"
 import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
 import { handleLogout } from '@/redux/reducerSlice/users';
 import { initializeCartAndWishList } from '@/redux/reducerSlice/products';
+import React, { useState,useEffect } from 'react';
+import { Drawer } from 'antd';
 
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
   const { cartList } = useSelector(state => state.products)
   const { wishList } = useSelector(state => state.products)
+  const [products,setProducts]= useState([])
+  const fetchProducts= async()=> {
+   const res= await fetch('http://localhost:5000/products')
+    const {data} =await res.json()
+    setProducts(data)
+  }
+
+
+  useEffect(() => {
+    fetchProducts()
+  },[])
+ 
   const dispatch = useDispatch()
   const userLogout = () => {
     dispatch(handleLogout()),
     dispatch(initializeCartAndWishList())
   }
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
   const { isLoggedIn, userDetails } = useSelector(state => state.users)
 
   const content = (
@@ -29,6 +50,9 @@ export default function Header() {
     <>
 
       <header>
+      <Drawer title="Cart" placement="right" onClose={onClose} visible={open}>
+      
+      </Drawer>
         {/* {JSON.stringify(wishList)}
                   {JSON.stringify(cartList)} */}
         <div className="container-header">
@@ -67,7 +91,7 @@ export default function Header() {
                   </Popover>
                   <div className='cartlist' style={{ marginRight: '20px' }}>
                     <Badge count={cartList.length}>
-                      <ShoppingCartOutlined
+                      <ShoppingCartOutlined onClick={showDrawer}
                         style={{
                           fontSize: '30px',
                           color: "white",

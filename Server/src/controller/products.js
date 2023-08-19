@@ -31,4 +31,13 @@ const getAllProducts = async(req,res)=>{
     }
    
   }
+
+  // const getProductsInCartList=async(req,res)=>{
+  //   try{
+  //     const data=await Products.findById({_id:req.state.})
+  //   }catch{
+
+
+  //   }
+  // }
   module.exports = {addNewProducts,getAllProducts,getProductImageById}
