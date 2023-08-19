@@ -1,18 +1,20 @@
 import Image from 'next/image';
-import { Avatar, Popover,Badge } from 'antd';
+import { Avatar, Popover, Badge } from 'antd';
 import Link from "next/link";
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from "../../../public/Logo.png"
 import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
+import { handleLogout } from '@/redux/reducerSlice/users';
+import { initializeCartAndWishList } from '@/redux/reducerSlice/products';
 
 
 export default function Header() {
-  const {cartList}=useSelector(state=>state.products)
-  const{wishList}=useSelector(state=>state.products)
-  const router = useRouter()
-  const handleLogout = () => {
-    router.push('/profile')
+  const { cartList } = useSelector(state => state.products)
+  const { wishList } = useSelector(state => state.products)
+  const dispatch = useDispatch()
+  const userLogout = () => {
+    dispatch(handleLogout()),
+    dispatch(initializeCartAndWishList())
   }
   const { isLoggedIn, userDetails } = useSelector(state => state.users)
 
@@ -20,14 +22,14 @@ export default function Header() {
     <div>
 
       <Link href="/profile">Profile</Link>
-      <p onClick={handleLogout}>Logout</p>
+      <p onClick={userLogout}>Logout</p>
     </div>
   );
   return (
     <>
 
       <header>
-      {/* {JSON.stringify(wishList)}
+        {/* {JSON.stringify(wishList)}
                   {JSON.stringify(cartList)} */}
         <div className="container-header">
           <nav>
@@ -47,7 +49,7 @@ export default function Header() {
 
                 </div>
                 <div className="avatar">
-                  
+
 
                   <Popover placement="bottom" title={userDetails.fullname} content={content} trigger="click">
                     <Avatar
@@ -63,24 +65,24 @@ export default function Header() {
                       {userDetails.fullname[0]}
                     </Avatar>
                   </Popover>
-                  <div className='cartlist' style={{marginRight:'20px'}}>
-                  <Badge count={cartList.length}>
-                    <ShoppingCartOutlined
-                      style={{
-                        fontSize: '30px',
-                        color: "white",
-                       
-                      }} />
-                  </Badge>
+                  <div className='cartlist' style={{ marginRight: '20px' }}>
+                    <Badge count={cartList.length}>
+                      <ShoppingCartOutlined
+                        style={{
+                          fontSize: '30px',
+                          color: "white",
+
+                        }} />
+                    </Badge>
                   </div>
                   <div className='wishlist'>
-                  <Badge count={wishList.length}>
-                    <HeartOutlined
-                      style={{
-                        fontSize: '30px',
-                        color: "white"
-                      }} />
-                  </Badge>
+                    <Badge count={wishList.length}>
+                      <HeartOutlined
+                        style={{
+                          fontSize: '30px',
+                          color: "white"
+                        }} />
+                    </Badge>
                   </div>
                 </div>
 
@@ -102,7 +104,27 @@ export default function Header() {
                 <ul className="nav-menus">
                   <li><Link href="/login">Login</Link></li>
                   <li><Link href="/signup">Signup</Link></li>
-                </ul>
+                
+                <div className='cartlist' style={{ marginRight: '20px' }}>
+                    <Badge count={cartList.length}>
+                      <ShoppingCartOutlined
+                        style={{
+                          fontSize: '30px',
+                          color: "white",
+
+                        }} />
+                    </Badge>
+                  </div>
+                  <div className='wishlist'>
+                    <Badge count={wishList.length}>
+                      <HeartOutlined
+                        style={{
+                          fontSize: '30px',
+                          color: "white"
+                        }} />
+                    </Badge>
+                  </div>
+                  </ul>
               </>}
 
 

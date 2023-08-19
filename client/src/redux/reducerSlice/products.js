@@ -30,11 +30,15 @@ const productsSlice = createSlice({
         wishList: existingWishListState
       }
 
+    },
+    initializeCartAndWishList(state,actions){
+      state=initialState
+      return state
     }
   },
 
 },
 )
 
-export const { addToCart, addToWishList } = productsSlice.actions;
+export const { addToCart, addToWishList ,initializeCartAndWishList} = productsSlice.actions;
 export default productsSlice.reducer;
