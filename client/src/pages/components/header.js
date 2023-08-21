@@ -6,26 +6,16 @@ import Logo from "../../../public/Logo.png"
 import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
 import { handleLogout } from '@/redux/reducerSlice/users';
 import { initializeCartAndWishList } from '@/redux/reducerSlice/products';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { Drawer } from 'antd';
 
 
+
 export default function Header() {
+ 
   const [open, setOpen] = useState(false);
   const { cartList } = useSelector(state => state.products)
   const { wishList } = useSelector(state => state.products)
-  const [products,setProducts]= useState([])
-  const fetchProducts= async()=> {
-   const res= await fetch('http://localhost:5000/products')
-    const {data} =await res.json()
-    setProducts(data)
-  }
-
-
-  useEffect(() => {
-    fetchProducts()
-  },[])
- 
   const dispatch = useDispatch()
   const userLogout = () => {
     dispatch(handleLogout()),
@@ -46,15 +36,58 @@ export default function Header() {
       <p onClick={userLogout}>Logout</p>
     </div>
   );
+
+  // To pass unique item to CartDrawer
+const uniqueCartList = [];
+
+cartList.forEach(item => {
+  const existingProductIndex = uniqueCartList.findIndex(product => product._id === item._id);
+
+  if (existingProductIndex !== -1) {
+    // If the product already exists in uniqueCartList, increment its quantity
+    uniqueCartList[existingProductIndex].quantity++;
+  } else {
+    // If the product is not in uniqueCarutList, add it with a quantity of 1
+    uniqueCartList.push({ ...item, quantity: 1 });
+  }
+
+  // To remove Item from the cart
+
+  
+});
+
   return (
     <>
 
       <header>
+        
       <Drawer title="Cart" placement="right" onClose={onClose} visible={open}>
-      
+      {uniqueCartList.map((item)=>{
+
+                    return(
+                      <>
+                       <div className='card1'>
+               
+               <Image class="w-full h-full object-cover"
+                src={'http://localhost:5000/product-img/'+ item._id} 
+                alt="F" width={200} height={200}
+                 />  
+                 
+                
+              <h1>{item.productName}</h1> 
+               <p>{item.productDescription}</p> 
+               <h2>Unit Price:Rs.{item.productPrice}</h2>
+               <h3> Quantity:{item.quantity}</h3>
+               <button>Remove</button>
+               </div>
+                      </>
+                    )
+                  })}
       </Drawer>
         {/* {JSON.stringify(wishList)}
                   {JSON.stringify(cartList)} */}
+                  
+
         <div className="container-header">
           <nav>
             {isLoggedIn ? (
@@ -131,7 +164,7 @@ export default function Header() {
                 
                 <div className='cartlist' style={{ marginRight: '20px' }}>
                     <Badge count={cartList.length}>
-                      <ShoppingCartOutlined
+                      <ShoppingCartOutlined onClick={showDrawer}
                         style={{
                           fontSize: '30px',
                           color: "white",

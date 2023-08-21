@@ -11,8 +11,6 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 
-
-
 const { Header, Sider, Content } = Layout;
 
 const Admin = () => {
@@ -147,7 +145,6 @@ const Admin = () => {
                                     <Field type="textarea" placeholder="Product Description" name="productDescription" />
                                     {errors.productDescription && touched.productDescription ? <div>{errors.productDescription}</div> : null}<br />
                                     <input type="file" onChange={(e)=> setFile(e.target.files[0])}/>
-                                  
                                     <button type="submit">Submit</button>
                                 </div>
                             </Form>

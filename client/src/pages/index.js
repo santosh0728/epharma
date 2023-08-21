@@ -53,7 +53,7 @@ function index() {
               <HeartOutlined onClick={()=>dispatch(addToWishList(item._id))}/>
              <p>Category:{item.category}<br/></p> 
               
-              <button onClick={()=>dispatch(addToCart(item._id))}><ShoppingCartOutlined/> Add to Cart</button>
+              <button onClick={()=>dispatch(addToCart(item))}><ShoppingCartOutlined/> Add to Cart</button>
               <button>Buy Now</button>
               
               </div>
