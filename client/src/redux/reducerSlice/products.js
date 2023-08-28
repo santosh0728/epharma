@@ -34,11 +34,21 @@ const productsSlice = createSlice({
     initializeCartAndWishList(state,actions){
       state=initialState
       return state
-    }
-  },
+    },
+    removeFromCart(state,actions){
+      let initialCart=[...state.cartList];
 
-},
+      const deleteItem=actions.payload;
+      initialCart=initialCart.filter((item)=>item._id!==deleteItem._id)
+      return{
+        ...state,
+        cartList:initialCart
+      }
+    }
+
+  },
+}
 )
 
-export const { addToCart, addToWishList ,initializeCartAndWishList} = productsSlice.actions;
+export const { addToCart, addToWishList ,initializeCartAndWishList,removeFromCart} = productsSlice.actions;
 export default productsSlice.reducer;

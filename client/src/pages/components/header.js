@@ -8,18 +8,17 @@ import { handleLogout } from '@/redux/reducerSlice/users';
 import { initializeCartAndWishList } from '@/redux/reducerSlice/products';
 import React, { useState } from 'react';
 import { Drawer } from 'antd';
-
+import { removeFromCart } from '@/redux/reducerSlice/products';
 
 
 export default function Header() {
- 
   const [open, setOpen] = useState(false);
   const { cartList } = useSelector(state => state.products)
   const { wishList } = useSelector(state => state.products)
   const dispatch = useDispatch()
   const userLogout = () => {
     dispatch(handleLogout()),
-    dispatch(initializeCartAndWishList())
+      dispatch(initializeCartAndWishList())
   }
   const showDrawer = () => {
     setOpen(true);
@@ -38,56 +37,48 @@ export default function Header() {
   );
 
   // To pass unique item to CartDrawer
-const uniqueCartList = [];
+  const uniqueCartList = [];
 
-cartList.forEach(item => {
-  const existingProductIndex = uniqueCartList.findIndex(product => product._id === item._id);
+  cartList.forEach(item => {
+    const existingProductIndex = uniqueCartList.findIndex(product => product._id === item._id);
 
-  if (existingProductIndex !== -1) {
-    // If the product already exists in uniqueCartList, increment its quantity
-    uniqueCartList[existingProductIndex].quantity++;
-  } else {
-    // If the product is not in uniqueCarutList, add it with a quantity of 1
-    uniqueCartList.push({ ...item, quantity: 1 });
-  }
-
+    if (existingProductIndex !== -1) {
+      // If the product already exists in uniqueCartList, increase its quantity
+      uniqueCartList[existingProductIndex].quantity++;
+    } else {
+      // If the product is not in uniqueCarutList, add it with a quantity of 1
+      uniqueCartList.push({ ...item, quantity: 1 });
+    }
+  });
   // To remove Item from the cart
-
-  
-});
-
+  // const removeCartItem = (itemId) => {
+  //   const updatedCartList = cartList.filter(item => item._id !== itemId);
+  //   // cartList.push(...updatedCartList)
+  // }
   return (
     <>
-
       <header>
-        
-      <Drawer title="Cart" placement="right" onClose={onClose} visible={open}>
-      {uniqueCartList.map((item)=>{
-
-                    return(
-                      <>
-                       <div className='card1'>
-               
-               <Image class="w-full h-full object-cover"
-                src={'http://localhost:5000/product-img/'+ item._id} 
-                alt="F" width={200} height={200}
-                 />  
-                 
-                
-              <h1>{item.productName}</h1> 
-               <p>{item.productDescription}</p> 
-               <h2>Unit Price:Rs.{item.productPrice}</h2>
-               <h3> Quantity:{item.quantity}</h3>
-               <button>Remove</button>
-               </div>
-                      </>
-                    )
-                  })}
-      </Drawer>
+        <Drawer title="Cart" placement="right" onClose={onClose} visible={open}>
+          {uniqueCartList.map((item) => {
+            return (
+              <>
+                <div className='card1'>
+                  <Image class="w-full h-full object-cover"
+                    src={'http://localhost:5000/product-img/' + item._id}
+                    alt="F" width={200} height={200}
+                  />
+                  <h1>{item.productName}</h1>
+                  <p>{item.productDescription}</p>
+                  <h2>Unit Price:Rs.{item.productPrice}</h2>
+                  <h3> Quantity:{item.quantity}</h3>
+                  <button onClick={()=>dispatch(removeFromCart(item))}> Remove</button>
+                </div>
+              </>
+            )
+          })}
+        </Drawer>
         {/* {JSON.stringify(wishList)}
                   {JSON.stringify(cartList)} */}
-                  
-
         <div className="container-header">
           <nav>
             {isLoggedIn ? (
@@ -161,8 +152,8 @@ cartList.forEach(item => {
                 <ul className="nav-menus">
                   <li><Link href="/login">Login</Link></li>
                   <li><Link href="/signup">Signup</Link></li>
-                
-                <div className='cartlist' style={{ marginRight: '20px' }}>
+
+                  <div className='cartlist' style={{ marginRight: '20px' }}>
                     <Badge count={cartList.length}>
                       <ShoppingCartOutlined onClick={showDrawer}
                         style={{
@@ -181,13 +172,10 @@ cartList.forEach(item => {
                         }} />
                     </Badge>
                   </div>
-                  </ul>
+                </ul>
               </>}
-
-
           </nav>
         </div>
-
       </header>
     </>
   )
