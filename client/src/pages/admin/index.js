@@ -48,7 +48,7 @@ const Admin = () => {
           .required('Required'),
         productDescription: Yup.string()
           .min(2, 'Too Short!')
-          .max(20, 'Too Long!')
+          .max(2000, 'Too Long!')
           .required('Required'),
         
       });

@@ -53,13 +53,14 @@ export default function Header() {
   // To remove Item from the cart
   // const removeCartItem = (itemId) => {
   //   const updatedCartList = cartList.filter(item => item._id !== itemId);
-  //   // cartList.push(...updatedCartList)
+    // cartList.push(...updatedCartList)
   // }
   return (
     <>
       <header>
         <Drawer title="Cart" placement="right" onClose={onClose} visible={open}>
           {uniqueCartList.map((item) => {
+           
             return (
               <>
                 <div className='card1'>

@@ -4,11 +4,12 @@ import Image from 'next/image'
 import { ShoppingCartOutlined,HeartOutlined } from '@ant-design/icons'
 import { addToCart, addToWishList } from '@/redux/reducerSlice/products'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
 
 
 function index() {
-  
+  const router=useRouter()
   const dispatch=useDispatch()
   const [products,setProducts]= useState([])
   const fetchProducts= async()=> {
@@ -37,16 +38,13 @@ function index() {
             {/* {JSON.stringify(cartList)} */}
             {products.map((item)=>{
               return (
-                <>
-                
+                <>   
               <div className='card'>
                
               <Image class="w-full h-full object-cover"
                src={'http://localhost:5000/product-img/'+ item._id} 
                alt="F" width={200} height={200}
                 />  
-                
-               
              <h1>{item.productName}</h1> 
               <p>{item.productDescription}</p> 
               <h2>Rs.{item.productPrice}</h2>
@@ -54,7 +52,9 @@ function index() {
              <p>Category:{item.category}<br/></p> 
               
               <button onClick={()=>dispatch(addToCart(item))}><ShoppingCartOutlined/> Add to Cart</button>
-              <button>Buy Now</button>
+              <button onClick={() => router.push(`/product?id=${item._id}`)}>
+                Buy Now
+              </button>
               
               </div>
               </>
