@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import { Button, Drawer } from 'antd';
+import React, { useState} from 'react';
+import {  Drawer } from 'antd';
+import { useSelector,useDispatch } from 'react-redux';
+import { removeFromCart } from '@/redux/reducerSlice/products';
 
 export default function CartDrawer (){
   const [open, setOpen] = useState(false);
+  const { cartList } = useSelector(state => state.products)
+  const dispatch=useDispatch()
 
   const showDrawer = () => {
     setOpen(true);
@@ -11,8 +15,22 @@ export default function CartDrawer (){
   const onClose = () => {
     setOpen(false);
   };
+  // To pass unique item to CartDrawer
+  const uniqueCartList = [];
 
-  <Drawer title="Cart" placement="right" onClose={onClose} visible={open}>
+  cartList.forEach(item => {
+    const existingProductIndex = uniqueCartList.findIndex(product => product._id === item._id);
+
+    if (existingProductIndex !== -1) {
+      // If the product already exists in uniqueCartList, increase its quantity
+      uniqueCartList[existingProductIndex].quantity++;
+    } else {
+      // If the product is not in uniqueCarutList, add it with a quantity of 1
+      uniqueCartList.push({ ...item, quantity: 1 });
+    }
+  });
+
+  <Drawer title="Cart" placement="right" onClose={onClose} visible={open} showDrawer={showDrawer}>
   {uniqueCartList.map((item) => {
     return (
       <>

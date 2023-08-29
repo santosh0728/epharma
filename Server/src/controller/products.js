@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const Products=require('../models/products')
+
+
 const addNewProducts = async(req,res)=>{
     req.body.productImage = req.file.filename
     await Products.create(req.body)
@@ -8,6 +10,9 @@ const addNewProducts = async(req,res)=>{
         msg: 'success'
       })
   }
+
+
+
 const getAllProducts = async(req,res)=>{
    const data =  await Products.find()
    if(data){
@@ -32,12 +37,19 @@ const getAllProducts = async(req,res)=>{
    
   }
 
-  // const getProductsInCartList=async(req,res)=>{
-  //   try{
-  //     const data=await Products.findById({_id:req.state.})
-  //   }catch{
+ const getProductById=async(req,res)=>{
+ const product = await Products.findById(req.params.id)
+  if (!product) {
+    return res.status(500).json({
+      success: false,
+      message: 'Product not found'
+    })
+  }
 
+  res.status(200).json({
+    success: true,
+    product,
+  })
 
-  //   }
-  // }
-  module.exports = {addNewProducts,getAllProducts,getProductImageById}
+ }
+  module.exports = {addNewProducts,getAllProducts,getProductImageById,getProductById}
