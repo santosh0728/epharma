@@ -372,7 +372,7 @@ button[type="submit"]:hover {
   }
 }
 
-/* Add these styles to your CSS file or style block */
+
 
 .card1 {
   border: 1px solid #ccc;
@@ -423,9 +423,10 @@ Product page css */
 /* Styles for the entire page */
 .productDetails {
   max-width: 600px;
-  margin: 0 auto;
+ margin-top: 30px;
+ margin-left: 30rem;
   padding: 20px;
   text-align: center;
+  background-color: #007bff;
+  border-radius: 20px;
 }
-
-/* Styles for the product image */

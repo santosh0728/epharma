@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/header';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Button } from 'antd';
+import { useDispatch } from 'react-redux'
+import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
+import { addToCart, addToWishList } from '@/redux/reducerSlice/products'
+
 const ProductDetails = () => {
   const router = useRouter();
+  const dispatch = useDispatch()
   const productId = router.query.id;
   const [product, setProduct] = useState(null);
 
@@ -27,7 +31,7 @@ const ProductDetails = () => {
   return (
     <>
       <Header />
-      <div classname="productDetails">
+      <div className="productDetails">
         {/* Render product details here */}
         {product ? (
           <>
@@ -38,7 +42,7 @@ const ProductDetails = () => {
             <h1>{product.productName}</h1>
             <p>{product.productDescription}</p>
             <h2>Rs. {product.productPrice}</h2>
-            <Button>Checkout</Button>
+            <button onClick={() => dispatch(addToCart(product))}><ShoppingCartOutlined /> Add to Cart</button>
           </>
         ) : (
           <p>Loading...</p>
