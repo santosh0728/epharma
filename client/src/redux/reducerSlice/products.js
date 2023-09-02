@@ -11,16 +11,23 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    addToCart(state, actions) {
+    addToCart(state, action) {
+      const newItem = action.payload;
+      const existingItem = state.cartList.find((item) => item._id === newItem._id);
 
-      const existingCartState = [...state.cartList]
-      existingCartState.push(actions.payload)
-      return {
-        ...state,
-        cartList: existingCartState
+      if (existingItem) {
+        // If the item is already in the cart, increment its quantity
+        existingItem.quantity += 1;
+      } else {
+        // If the item is not in the cart, add it with a quantity of 1
+        state.cartList.push({ ...newItem, quantity: 1 });
       }
 
+      // Explicit return statement with the updated state
+      return state;
     },
+    
+
     addToWishList(state, actions) {
 
       const existingWishListState = [...state.wishList]

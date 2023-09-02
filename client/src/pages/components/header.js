@@ -16,6 +16,8 @@ export default function Header() {
   const { cartList } = useSelector(state => state.products)
   const { wishList } = useSelector(state => state.products)
   const dispatch = useDispatch()
+  //to calculate the total quantity on the cart
+  const totalQuantity = cartList.reduce((total, item) => total + item.quantity, 0);
   const userLogout = () => {
     dispatch(handleLogout()),
       dispatch(initializeCartAndWishList())
@@ -36,42 +38,24 @@ export default function Header() {
     </div>
   );
 
-  // To pass unique item to CartDrawer
-  const uniqueCartList = [];
-
-  cartList.forEach(item => {
-    const existingProductIndex = uniqueCartList.findIndex(product => product._id === item._id);
-
-    if (existingProductIndex !== -1) {
-      // If the product already exists in uniqueCartList, increase its quantity
-      uniqueCartList[existingProductIndex].quantity++;
-    } else {
-      // If the product is not in uniqueCarutList, add it with a quantity of 1
-      uniqueCartList.push({ ...item, quantity: 1 });
-    }
-  });
   // Calculate the total price of items in the cart
   const calculateTotalPrice = () => {
     let totalPrice = 0;
 
-    uniqueCartList.forEach(item => {
+    cartList.forEach(item => {
       const itemPrice = item.productPrice * item.quantity;
       totalPrice += itemPrice;
     });
 
     return totalPrice;
   };
-  // To remove Item from the cart
-  // const removeCartItem = (itemId) => {
-  //   const updatedCartList = cartList.filter(item => item._id !== itemId);
-    // cartList.push(...updatedCartList)
-  // }
+ 
   return (
     <>
       <header>
       <Drawer title="Cart" placement="right" width={450} onClose={onClose} visible={open}>
     <div className="cart-items">
-    {uniqueCartList.map(item => (
+    {cartList.map(item => (
       <div className="card1" key={item._id}>
         <Image
           className="w-full h-full object-cover"
@@ -140,7 +124,7 @@ export default function Header() {
                     </Avatar>
                   </Popover>
                   <div className='cartlist' style={{ marginRight: '20px' }}>
-                    <Badge count={cartList.length}>
+                    <Badge count={totalQuantity}>
                       <ShoppingCartOutlined onClick={showDrawer}
                         style={{
                           fontSize: '30px',
