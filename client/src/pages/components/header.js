@@ -50,6 +50,17 @@ export default function Header() {
       uniqueCartList.push({ ...item, quantity: 1 });
     }
   });
+  // Calculate the total price of items in the cart
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+
+    uniqueCartList.forEach(item => {
+      const itemPrice = item.productPrice * item.quantity;
+      totalPrice += itemPrice;
+    });
+
+    return totalPrice;
+  };
   // To remove Item from the cart
   // const removeCartItem = (itemId) => {
   //   const updatedCartList = cartList.filter(item => item._id !== itemId);
@@ -58,26 +69,40 @@ export default function Header() {
   return (
     <>
       <header>
-        <Drawer title="Cart" placement="right" onClose={onClose} visible={open}>
-          {uniqueCartList.map((item) => {
-           
-            return (
-              <>
-                <div className='card1'>
-                  <Image class="w-full h-full object-cover"
-                    src={'http://localhost:5000/product-img/' + item._id}
-                    alt="F" width={200} height={200}
-                  />
-                  <h1>{item.productName}</h1>
-                  <p>{item.productDescription}</p>
-                  <h2>Unit Price:Rs.{item.productPrice}</h2>
-                  <h3> Quantity:{item.quantity}</h3>
-                  <button onClick={()=>dispatch(removeFromCart(item))}> Remove</button>
-                </div>
-              </>
-            )
-          })}
-        </Drawer>
+      <Drawer title="Cart" placement="right" width={450} onClose={onClose} visible={open}>
+    <div className="cart-items">
+    {uniqueCartList.map(item => (
+      <div className="card1" key={item._id}>
+        <Image
+          className="w-full h-full object-cover"
+          src={'http://localhost:5000/product-img/' + item._id}
+          alt="F"
+          width={200}
+          height={200}
+        />
+        <h1>{item.productName}</h1>
+        <h2>Unit Price: Rs.{item.productPrice}</h2>
+        <h3>Quantity: {item.quantity}</h3>
+        <button onClick={() => dispatch(removeFromCart(item))}>Remove</button>
+      </div>
+    ))}
+  </div>
+
+  <div className="totalAndButton">
+    {cartList.length > 0 && (
+      <>
+        
+         <p>Total: Rs.{calculateTotalPrice()}</p>  
+        <button>Go to Cart</button>
+        
+      </>
+    )}
+
+    {cartList.length === 0 && <div className='empty-cart'>Your Cart is empty add some item to cart</div>}
+  </div>
+</Drawer>
+
+
         {/* {JSON.stringify(wishList)}
                   {JSON.stringify(cartList)} */}
         <div className="container-header">

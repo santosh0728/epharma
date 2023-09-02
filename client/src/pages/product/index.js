@@ -35,14 +35,18 @@ const ProductDetails = () => {
         {/* Render product details here */}
         {product ? (
           <>
+          <div className="content">
           <Image class="w-full h-full object-cover"
                         src={'http://localhost:5000/product-img/' + productId}
-                        alt="F" width={200} height={200}
+                        alt="F" width={300} height={300}
                       />
             <h1>{product.productName}</h1>
-            <p>{product.productDescription}</p>
+            
             <h2>Rs. {product.productPrice}</h2>
+            {product.productDescription}<br/>
             <button onClick={() => dispatch(addToCart(product))}><ShoppingCartOutlined /> Add to Cart</button>
+            <button>Checkout</button>
+            </div>
           </>
         ) : (
           <p>Loading...</p>
