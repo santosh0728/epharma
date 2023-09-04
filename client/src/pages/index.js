@@ -43,10 +43,10 @@ function index() {
 
                       <Image class="w-full h-full object-cover"
                         src={'http://localhost:5000/product-img/' + item._id}
-                        alt="F" width={200} height={200}
+                        alt="F" width={300} height={400}
                       />
                       <h1>{item.productName}</h1>
-                      <p>{item.productDescription}</p>
+                      {/* <p>{item.productDescription}</p> */}
                       <h2>Rs.{item.productPrice}</h2>
                       <HeartOutlined onClick={() => dispatch(addToWishList(item._id))} />
                       <p>Category:{item.category}<br /></p>

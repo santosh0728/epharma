@@ -9,8 +9,7 @@ const userSchema = new mongoose.Schema({
     phoneNumber: {type:String,required:true}, // String is shorthand for {type: String}
     email: String,
     password: String,
-    address:String,
-    wishList:Array
+    address:String
   });
   
   const Users = mongoose.model('Users', userSchema);

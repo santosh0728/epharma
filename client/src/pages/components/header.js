@@ -9,6 +9,7 @@ import { initializeCartAndWishList } from '@/redux/reducerSlice/products';
 import React, { useState } from 'react';
 import { Drawer } from 'antd';
 import { removeFromCart } from '@/redux/reducerSlice/products';
+import { useRouter } from 'next/router';
 
 
 export default function Header() {
@@ -16,6 +17,7 @@ export default function Header() {
   const { cartList } = useSelector(state => state.products)
   const { wishList } = useSelector(state => state.products)
   const dispatch = useDispatch()
+  const router=useRouter();
   //to calculate the total quantity on the cart
   const totalQuantity = cartList.reduce((total, item) => total + item.quantity, 0);
   const userLogout = () => {
@@ -49,42 +51,42 @@ export default function Header() {
 
     return totalPrice;
   };
- 
+
   return (
     <>
       <header>
-      <Drawer title="Cart" placement="right" width={450} onClose={onClose} visible={open}>
-    <div className="cart-items">
-    {cartList.map(item => (
-      <div className="card1" key={item._id}>
-        <Image
-          className="w-full h-full object-cover"
-          src={'http://localhost:5000/product-img/' + item._id}
-          alt="F"
-          width={200}
-          height={200}
-        />
-        <h1>{item.productName}</h1>
-        <h2>Unit Price: Rs.{item.productPrice}</h2>
-        <h3>Quantity: {item.quantity}</h3>
-        <button onClick={() => dispatch(removeFromCart(item))}>Remove</button>
-      </div>
-    ))}
-  </div>
+        <Drawer title="Cart" placement="right" width={450} onClose={onClose} visible={open}>
+          <div className="cart-items">
+            {cartList.map(item => (
+              <div className="card1" key={item._id}>
+                <Image
+                  className="w-full h-full object-cover"
+                  src={'http://localhost:5000/product-img/' + item._id}
+                  alt="F"
+                  width={200}
+                  height={200}
+                />
+                <h1>{item.productName}</h1>
+                <h2>Unit Price: Rs.{item.productPrice}</h2>
+                <h3>Quantity: {item.quantity}</h3>
+                <button onClick={() => dispatch(removeFromCart(item))}>Remove</button>
+              </div>
+            ))}
+          </div>
 
-  <div className="totalAndButton">
-    {cartList.length > 0 && (
-      <>
-        
-         <p>Total: Rs.{calculateTotalPrice()}</p>  
-        <button>Go to Cart</button>
-        
-      </>
-    )}
+          <div className="totalAndButton">
+            {cartList.length > 0 && (
+              <>
 
-    {cartList.length === 0 && <div className='empty-cart'>Your Cart is empty add some item to cart</div>}
-  </div>
-</Drawer>
+                <p>Total: Rs.{calculateTotalPrice()}</p>
+                <button onClick={()=> router.push('/cart')}>Go to Cart</button>
+
+              </>
+            )}
+
+            {cartList.length === 0 && <div className='empty-cart'>Your Cart is empty add some item to cart</div>}
+          </div>
+        </Drawer>
 
 
         {/* {JSON.stringify(wishList)}
@@ -94,12 +96,12 @@ export default function Header() {
             {isLoggedIn ? (
               <>
                 <div className="logo">
-                  <a href='/'> <Image
+                  <Link href='/'> <Image
                     src={Logo}
                     width={50}
                     height={50}
                     alt="logo"
-                  ></Image></a>
+                  ></Image></Link>
                 </div>
                 <div className="search-bar">
                   <input type="text" placeholder="Search products..." />

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useDispatch } from 'react-redux'
 import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
 import { addToCart, addToWishList } from '@/redux/reducerSlice/products'
+import Link from 'next/link';
 
 const ProductDetails = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ const ProductDetails = () => {
             <h2>Rs. {product.productPrice}</h2>
             {product.productDescription}<br/>
             <button onClick={() => dispatch(addToCart(product))}><ShoppingCartOutlined /> Add to Cart</button>
-            <button>Checkout</button>
+            <button onClick={()=> router.push('/cart')}>Go to Cart</button>
             </div>
           </>
         ) : (

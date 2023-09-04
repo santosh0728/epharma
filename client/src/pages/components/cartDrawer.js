@@ -35,7 +35,7 @@ export default function CartDrawer (){
     return (
       <>
         <div className='card1'>
-          <Image class="w-full h-full object-cover"
+          <Image 
             src={'http://localhost:5000/product-img/' + item._id}
             alt="F" width={200} height={200}
           />

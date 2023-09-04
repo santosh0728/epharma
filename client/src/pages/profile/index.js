@@ -4,6 +4,7 @@ import { Card, Modal, message } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import { setUserDetails } from '@/redux/reducerSlice/users';
 import * as Yup from 'yup';
+import Header from '../components/header';
 
 
 const PasswordChangeSchema = Yup.object().shape({
@@ -154,6 +155,7 @@ const Profile = () => {
 
   return (
     <>
+    <Header/>
       {contextHolder}
       <Card title="Your Profile">
         <Card type="inner" title="User Details"

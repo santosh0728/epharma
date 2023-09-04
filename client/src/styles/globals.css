@@ -495,9 +495,143 @@ Product page css */
   cursor: pointer;
   margin-top: 5px;
   border-radius: 20px;
-  background: #800080;
+  background:#446254;
 }
 
 .productDetails button:hover{
   opacity: 0.8;
+}
+
+/* Css for cart page */
+
+.cart {
+  padding: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+}
+
+/* Cart page title */
+.cart h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Cart item container */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Product image */
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 4px;
+  
+}
+
+/* Product details */
+.cart-item-details {
+  flex-grow: 1;
+}
+
+/* Product title */
+.cart-item h1 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  
+}
+
+/* Product price */
+.cart-item h2 {
+  font-size: 16px;
+  color: #ff5722;
+  margin-bottom: 5px;
+}
+
+/* Quantity */
+.cart-item h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+ 
+}
+
+/* Remove button */
+.cart-item button {
+  background-color:#446254;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-size: 16px;
+  margin-right: 25px;
+}
+.cart-item button:hover{
+  background-color: red;
+}
+/* Checkout button */
+/* global.css */
+
+/* Styles for the checkout buttons */
+.checkout-btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.checkout-btn button {
+  background-color:#446254; /* Blue color for Checkout button */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-btn button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .cart-item img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cart-item h1 {
+    font-size: 16px;
+  }
+
+  .cart-item h2 {
+    font-size: 14px;
+  }
+
+  .cart-item h3 {
+    font-size: 12px;
+  }
+
+  .cart-item button {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
 }
