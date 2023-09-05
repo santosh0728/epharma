@@ -55,7 +55,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <Drawer title="Cart" placement="right" width={450} onClose={onClose} visible={open}>
+        <Drawer title="Cart" placement="right" width={500} onClose={onClose} visible={open}>
           <div className="cart-items">
             {cartList.map(item => (
               <div className="card1" key={item._id}>
@@ -166,7 +166,7 @@ export default function Header() {
                   <li><Link href="/signup">Signup</Link></li>
 
                   <div className='cartlist' style={{ marginRight: '20px' }}>
-                    <Badge count={cartList.length}>
+                    <Badge count={totalQuantity}>
                       <ShoppingCartOutlined onClick={showDrawer}
                         style={{
                           fontSize: '30px',

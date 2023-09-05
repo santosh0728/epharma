@@ -596,7 +596,7 @@ Product page css */
 }
 
 .checkout-btn button {
-  background-color:#446254; /* Blue color for Checkout button */
+  background-color:#446254; 
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -607,7 +607,11 @@ Product page css */
 }
 
 .checkout-btn button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3; 
+}
+.total-price{
+  font-size: 18px;
+  font-weight: bolder;
 }
 
 
