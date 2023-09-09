@@ -14,12 +14,12 @@ const storage = multer.diskStorage({
   })
   
   const upload = multer({ storage: storage })
-// router.get('/phone-available/:phoneNumber',UsersController.checkIfUserExists )
 
 router.get('/product-img/:id', ProductsController.getProductImageById)
 router.post("/products", upload.single('product'), ProductsController.addNewProducts)
 router.get('/products/:id',ProductsController.getProductById)
 router.get('/products',ProductsController.getAllProducts)
+router.get('/products-by-category/:category',ProductsController.getProductsByCategory)
 
 module.exports=router;
 

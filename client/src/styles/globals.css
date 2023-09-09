@@ -639,3 +639,12 @@ Product page css */
     padding: 5px 8px;
   }
 }
+
+/* categories box */
+/* global.css */
+/* global.css */
+
+.categoried-products{
+  display:inline-flex;
+}
+

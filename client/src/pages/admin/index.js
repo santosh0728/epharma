@@ -52,6 +52,14 @@ const Admin = () => {
           .required('Required'),
         
       });
+      const productCategories = [
+        "OTC Medicine",
+        "Women Choice",
+        "Sexual Wellness",
+        "Baby Care",
+        "Dental care",
+        "Prescription Medicine",
+      ];
 
     return (
         <Layout>
@@ -128,7 +136,16 @@ const Admin = () => {
                                     {errors.productName && touched.productName ? (
                                         <div>{errors.productName}</div>
                                     ) : null}<br />
-                                    <Field component="select" placeholder="Product Category" name="category" >
+                                        <Field component="select" placeholder="Product Category" name="category">
+                                        <option value="">Please Select the category</option>
+                                            {productCategories.map((category) => (
+                                                <option key={category} value={category}>
+                                                {category}
+                                                </option>
+                                            ))}
+                                            </Field>
+                                    
+                                    {/* <Field component="select" placeholder="Product Category" name="category" >
                                         <option value="">Please Select the category</option>
                                         <option value="OTC Medicine">OTC Medicine</option>
                                         <option value="Women Choice">Women Choice</option>
@@ -136,7 +153,7 @@ const Admin = () => {
                                         <option value="Baby Care">Baby Care</option>
                                         <option value="Dental care">Dental care</option>
                                         <option value="Prescription Medicine">Prescription Medicine</option>
-                                    </Field>
+                                    </Field> */}
                                     {errors.category && touched.category ? (
                                         <div>{errors.category}</div>
                                     ) : null}<br />

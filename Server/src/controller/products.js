@@ -52,4 +52,18 @@ const getAllProducts = async(req,res)=>{
   })
 
  }
-  module.exports = {addNewProducts,getAllProducts,getProductImageById,getProductById}
+
+ const getProductsByCategory = async (req, res) => {
+  try {
+    const category = req.params.category;
+    const products = await Products.find({ category });
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error retrieving products by category:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
+ 
+  module.exports = {addNewProducts,getAllProducts,getProductImageById,getProductById,getProductsByCategory}

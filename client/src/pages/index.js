@@ -5,7 +5,7 @@ import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
 import { addToCart, addToWishList } from '@/redux/reducerSlice/products'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-
+import Categories from './components/Categories'
 
 
 function index() {
@@ -18,14 +18,13 @@ function index() {
     setProducts(data)
   }
 
-
   useEffect(() => {
     fetchProducts()
   }, [])
   return (
     <>
       <Header />
-
+      <Categories/>
 
       <div className='products'>
         {/* <Badge count={cartList.length}>
